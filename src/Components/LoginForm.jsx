@@ -4,14 +4,14 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 const LoginForm = () => {
-  const { createUserWithGoogle, createUserWithEmailAndPass } =
+  const { createUserWithGoogle, setUser, signInUserWithEmailAndPass } =
     useContext(AuthContext);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    createUserWithEmailAndPass(email, password)
+    signInUserWithEmailAndPass(email, password)
       .then((result) => {
         console.log(result);
       })
