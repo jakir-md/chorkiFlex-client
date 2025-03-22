@@ -1,9 +1,10 @@
-import React from "react";
-import toast, { Toaster } from 'react-hot-toast';
+import React, { useContext } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const AddMovie = () => {
-
-  const handleFormSubmission = e => {
+  const { user } = useContext(AuthContext);
+  const handleFormSubmission = (e) => {
     e.preventDefault();
     const form = e.target;
     const poster = form.poster.value;
@@ -11,40 +12,65 @@ const AddMovie = () => {
     const genre = form.genre.value;
     const duration = parseFloat(form.duration.value);
     const releaseYear = form.releaseYear.value;
-    const rating = parseFloat(form.rating.value);
     const summary = form.summary.value;
+    const email = user.email;
+    const rating = form.rating.value;
 
     const urlPattern = /^(https?:\/\/)?([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(\/\S*)?$/;
-    if(!urlPattern.test(poster)){
+    if (!urlPattern.test(poster)) {
       toast.error("Invalid Poster URL !!!");
       return;
     }
 
-    if(movieTitle.length < 2){
+    if (movieTitle.length < 2) {
       toast.error("Incompatible Title !!!");
       return;
     }
 
-    if(parseFloat(duration) < 60.00){
+    if (parseFloat(duration) < 60.0) {
       toast.error("Irrelavent Duration !!!");
       return;
     }
 
-    if(releaseYear == ""){
+    if (releaseYear == "") {
       toast.error("Invalid Release Year !!!");
       return;
     }
 
-    if(rating == ""){
+    if (rating == "") {
       toast.error("Invalid Rating !!!");
       return;
     }
-    console.log(genre, movieTitle, duration, releaseYear, rating, summary);
-  }
+
+    const movie = {
+      poster,
+      movieTitle,
+      genre,
+      duration,
+      releaseYear,
+      rating,
+      summary,
+      email,
+    };
+
+    fetch("http://localhost:5000/movies", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(movie),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          toast.success("Movie Added Successfully.");
+        }
+      });
+  };
 
   return (
     <div>
-      <Toaster/>
+      <Toaster />
       <div className="hero bg-base-200 mt-5 w-3/4 mx-auto">
         <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
           <div className="card-body">
@@ -52,7 +78,9 @@ const AddMovie = () => {
               <div>
                 <div className="flex mx-auto mb-5 gap-10 w-11/12 justify-center items-center">
                   <div className="w-1/2">
-                    <label className="fieldset-label text-xm mb-2">Movie Poster</label>
+                    <label className="fieldset-label text-xm mb-2">
+                      Movie Poster
+                    </label>
                     <input
                       type="text"
                       className="input w-full"
@@ -113,7 +141,7 @@ const AddMovie = () => {
                     </select>
                   </div>
                   <div className="w-1/2">
-                    <label className="fieldset-label">Rating</label>
+                  <label className="fieldset-label">Rating</label>
                     <input
                       type="text"
                       className="input w-full"
@@ -132,12 +160,13 @@ const AddMovie = () => {
                       placeholder="Say some words about the movie"
                       cols="30"
                       rows="10"
-                    >
-                    </textarea>
+                    ></textarea>
                   </div>
                 </div>
                 <div className="flex mx-auto gap-10 w-11/12 justify-center items-center">
-                  <button className="btn btn-neutral mt-4 w-full">Add Movie</button>
+                  <button className="btn btn-neutral mt-4 w-full">
+                    Add Movie
+                  </button>
                 </div>
               </div>
             </form>

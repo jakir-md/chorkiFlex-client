@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const { createUserWithGoogle, setUser, signInUserWithEmailAndPass } =
+  const { createUserWithGoogle, signInUserWithEmailAndPass } =
     useContext(AuthContext);
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +17,19 @@ const LoginForm = () => {
     signInUserWithEmailAndPass(email, password)
       .then((result) => {
         console.log(result);
+        const lastSignInTime = result.user?.metadata?.lastSignInTime;
+        const updatedItem = { email, lastSignInTime };
+        navigate(location?.state ? location.state : '/home')
+
+        fetch("http://localhost:5000/user", {
+          method: "patch",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(updatedItem),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
       })
       .catch((error) => {
         console.log(error);
@@ -23,7 +39,46 @@ const LoginForm = () => {
   const handleLoginWithGoogle = () => {
     createUserWithGoogle()
       .then((result) => {
-        console.log(result);
+        const name = result.user.displayName;
+        const email = result.user.email;
+        const photoUrl = result.user.photoURL;
+        const creationTime = result.user?.metadata?.creationTime;
+        const lastSignInTime = result.user?.metadata?.lastSignInTime;
+        const user = { name, email, photoUrl, creationTime, lastSignInTime };
+
+        navigate(location?.state ? location.state : '/home')
+
+        fetch(`http://localhost:5000/user`, {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data) {
+              fetch("http://localhost:5000/user", {
+                method: "patch",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify({ email, lastSignInTime }),
+              }).then((res) => res.json())
+              .then(data => console.log(data))
+            }
+          })
+          .catch((error) => {
+            if (error) {
+              fetch(`http://localhost:5000/user`, {
+                method: "put",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(user),
+              });
+            }
+          });
       })
       .catch((error) => {
         console.log(error);

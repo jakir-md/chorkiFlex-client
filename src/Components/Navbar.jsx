@@ -1,23 +1,60 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FiAlignJustify } from "react-icons/fi";
-import { NavLink } from "react-router-dom";
-import './navbar.css'
+import { Link, NavLink } from "react-router-dom";
+import "./navbar.css";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
+
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut().then(result => {
+      console.log(result);
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
   const links = (
     <>
-      <div className="font-bold flex flex-col md:flex-row gap-3 md:gap-5">
+      <div className="font-bold flex flex-col items-center md:flex-row gap-3 md:gap-5">
         <NavLink to="/home">Home </NavLink>
         <NavLink to="/allmovie">All Movie </NavLink>
         <NavLink to="/addmovie">Add Movie</NavLink>
         <NavLink to="/myfavourite">My Favourites</NavLink>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/register">Register</NavLink>
+        {user ? (
+          <div>
+            <div className="dropdown dropdown-hover">
+              <div tabIndex={0} className="tooltip tooltip-right text-xs" data-tip={user.displayName}>
+                <img
+                  src={user.photoURL}
+                  className="w-10 h-10 rounded-full"
+                  alt=""
+                />
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu bg-base-100 w-28 rounded-box z-1 p-2 shadow-sm"
+              >
+                <li>
+                  <button onClick={handleLogOut}>Log Out</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        ) : (
+          <div className="flex gap-5">
+            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/register">Register</NavLink>
+          </div>
+        )}
       </div>
     </>
   );
+
+
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar py-0 bg-base-100 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -25,18 +62,17 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow"
           >
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">ChorkiFlex</a>
+        <a className="btn btn-ghost text-xl">
+          ChorkiFlex
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
-      </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
+        <ul className="menu menu-horizontal py-0 px-1 m-0">{links}</ul>
       </div>
     </div>
   );
