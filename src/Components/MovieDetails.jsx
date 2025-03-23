@@ -1,15 +1,50 @@
-import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import "./mycomponent.css";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const MovieDetails = () => {
   const loadedMovie = useLoaderData();
-  const { poster, movieTitle, genre, duration, releaseYear, rating, summary } =
-    loadedMovie;
+  const navigate = useNavigate();
+  const {user} = useContext(AuthContext);
 
+  console.log(loadedMovie);
+  const {_id:id, poster, movieTitle, genre, duration, releaseYear, rating, summary , email} =
+    loadedMovie;
+    const favEmail = user.email;
+    const handleDelete = (delId) => {
+        fetch(`http://localhost:5000/movie/${delId}`, {
+            method: "DELETE",
+        }).then(res => res.json())
+        .then(data => {
+            if(data.deletedCount > 0){
+                toast.success("Movie Deleted Successfully.");
+                navigate('/');
+            }
+        })
+    }
+
+    const handleFavourite = () => {
+        const obj = {poster, movieTitle, genre, duration, releaseYear, rating, summary, email, favEmail};
+        fetch('http://localhost:5000/favourite', {
+            method: "POST",
+            headers: {
+                'content-type':'application/json'
+            },
+            body: JSON.stringify(obj)
+        }).then(res => res.json())
+        .then(data => {
+            if(data.insertedId){
+                toast.success("Successfully Added To Favourite");
+            }
+        })
+    }
   return (
     <div className="card md:w-3/4 mx-auto my-20 rounded-md lg:card-side bg-base-100 shadow-xl">
+        <Toaster />
       <div>
         <figure className="md:w-[300px] w-full h-full p-5 md:p-0">
           <img
@@ -59,14 +94,11 @@ const MovieDetails = () => {
           </div>
         </dialog>
 
-        <div className="card-actions my-5 justify-end">
-          <Link
-            id="handleTalkId"
-            // target="blank"
-            className="btn w-full bg-black hover:opacity-70 font-bold text-white"
-          >
-            Talk With Expert
-          </Link>
+        <div className="card-actions flex my-5 items-center justify-between">
+          <button onClick={()=>handleFavourite(id)} className="bg-green-500 cursor-pointer hover:bg-green-600 px-3 py-2 text-white font-bold rounded-full">Add To Favourite</button>
+          <button onClick={()=>handleDelete(id)} className="bg-red-500 hover:bg-red-600 text-white px-3 cursor-pointer py-2 font-bold rounded-full flex justify-center items-center text-xl gap-3">
+            <RiDeleteBin6Line/> Delete
+          </button>
         </div>
       </div>
     </div>

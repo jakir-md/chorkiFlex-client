@@ -21,7 +21,7 @@ const Navbar = () => {
         <NavLink to="/">Home </NavLink>
         <NavLink to="/allmovies">All Movies </NavLink>
         <NavLink to="/addmovie">Add Movie</NavLink>
-        <NavLink to="/favourites">My Favourites</NavLink>
+        <NavLink to="/myfavourite">My Favourites</NavLink>
         <NavLink to="/plans">Plans</NavLink>
         {user ? (
           <div>

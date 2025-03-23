@@ -12,6 +12,7 @@ import ShowAllMovies from "./Components/ShowAllMovies.jsx";
 import PrivateRoute from "./Routers/PrivateRoute.jsx";
 import MainLayout from "./Layouts/MainLayout.jsx";
 import MovieDetails from "./Components/MovieDetails.jsx";
+import FavrouriteMovies from "./Components/FavrouriteMovies.jsx";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,12 @@ const router = createBrowserRouter([
           <MovieDetails></MovieDetails>
         </PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`)
+      },
+      {
+        path: "/myfavrourite",
+        element: <PrivateRoute>
+          <FavrouriteMovies></FavrouriteMovies>
+        </PrivateRoute>
       }
     ]
   },
