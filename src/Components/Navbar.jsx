@@ -1,23 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FiAlignJustify } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
 import "./navbar.css";
 import { AuthContext } from "../Provider/AuthProvider";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
 
 const Navbar = () => {
-
   const { user, logOut } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleLogOut = () => {
-    logOut().then(result => {
-      console.log(result);
-    }).catch(error => {
-      console.log(error);
-    })
-  }
+    logOut()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const links = (
     <>
-      <div className="font-bold flex flex-col items-center md:flex-row gap-3 md:gap-5">
+      <div className="font-bold flex flex-col text-start items-center md:flex-row gap-3 md:gap-5">
         <NavLink to="/">Home </NavLink>
         <NavLink to="/allmovies">All Movies </NavLink>
         <NavLink to="/addmovie">Add Movie</NavLink>
@@ -26,7 +31,11 @@ const Navbar = () => {
         {user ? (
           <div>
             <div className="dropdown dropdown-hover">
-              <div tabIndex={0} className="tooltip tooltip-right text-xs" data-tip={user.displayName}>
+              <div
+                tabIndex={0}
+                className="tooltip tooltip-right text-xs"
+                data-tip={user.displayName}
+              >
                 <img
                   src={user.photoURL}
                   className="w-10 h-10 rounded-full"
@@ -44,7 +53,7 @@ const Navbar = () => {
             </div>
           </div>
         ) : (
-          <div className="flex gap-5">
+          <div className="flex md:flex-row flex-col gap-5">
             <NavLink to="/auth/login">Login</NavLink>
             <NavLink to="/auth/register">Register</NavLink>
           </div>
@@ -53,24 +62,78 @@ const Navbar = () => {
     </>
   );
 
-
   return (
     <div className="navbar p-0 bg-base-100 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn pl-2 p-0 btn-ghost lg:hidden">
-            <FiAlignJustify className="text-xl" />
+          <div className="relative">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-2xl rounded-md md:hidden"
+            >
+              {!isOpen ? (
+                <RxHamburgerMenu />
+              ) : (
+                <RxCross2 className="border rounded-md" />
+              )}
+            </button>
+
+            {isOpen && (
+              <div className="absolute left-0 mt-3 w-40 z-1 bg-white shadow-lg rounded-md">
+                <ul className="p-2 flex flex-col">
+                  <NavLink to="/" className="font-bold px-2 py-1">
+                    Home{" "}
+                  </NavLink>
+                  <NavLink to="/allmovies" className="font-bold px-2 py-1">
+                    All Movies{" "}
+                  </NavLink>
+                  <NavLink to="/addmovie" className="font-bold px-2 py-1">
+                    Add Movie
+                  </NavLink>
+                  <NavLink to="/myfavourite" className="font-bold px-2 py-1">
+                    My Favourites
+                  </NavLink>
+                  <NavLink to="/plans" className="font-bold px-2 py-1">
+                    Plans
+                  </NavLink>
+                  {user ? (
+                    <div>
+                      <div className="dropdown dropdown-hover">
+                        <div
+                          tabIndex={0}
+                          className="tooltip tooltip-right text-xs"
+                          data-tip={user.displayName}
+                        >
+                          <img
+                            src={user.photoURL}
+                            className="w-8 h-8 rounded-full"
+                            alt=""
+                          />
+                        </div>
+                        <ul
+                          tabIndex={0}
+                          className="dropdown-content menu bg-base-100 w-28 rounded-box z-1 px-2 py-1 shadow-sm"
+                        >
+                          <li>
+                            <button onClick={handleLogOut}>Log Out</button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex md:flex-row flex-col">
+                      <NavLink to="/auth/login" className="font-bold px-2 py-1" >Login</NavLink>
+                      <NavLink to="/auth/register" className="font-bold px-2 py-1">Register</NavLink>
+                    </div>
+                  )}
+                </ul>
+              </div>
+            )}
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow"
-          >
-            {links}
-          </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
+        <Link to="/" className="btn btn-ghost text-xl">
           ChorkiFlex
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal py-0 px-1 m-0">{links}</ul>
