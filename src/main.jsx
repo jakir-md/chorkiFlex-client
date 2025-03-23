@@ -14,6 +14,7 @@ import MainLayout from "./Layouts/MainLayout.jsx";
 import MovieDetails from "./Components/MovieDetails.jsx";
 import FavrouriteMovies from "./Components/FavrouriteMovies.jsx";
 import ErrorPage from "./Components/ErrorPage.jsx";
+import UpdateMovie from "./Components/UpdateMovie.jsx";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,13 @@ const router = createBrowserRouter([
       {
         path: "*",
         element: <ErrorPage></ErrorPage>
+      },
+      {
+        path: "/updatemovie/:id",
+        element: <PrivateRoute>
+          <UpdateMovie></UpdateMovie>
+        </PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`)
       }
     ]
   },
