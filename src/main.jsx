@@ -11,6 +11,7 @@ import AddMovie from "./Components/AddMovie.jsx";
 import ShowAllMovies from "./Components/ShowAllMovies.jsx";
 import PrivateRoute from "./Routers/PrivateRoute.jsx";
 import MainLayout from "./Layouts/MainLayout.jsx";
+import MovieDetails from "./Components/MovieDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,13 @@ const router = createBrowserRouter([
         path: "/allmovies",
         element: <ShowAllMovies/>,
         loader: () => fetch('http://localhost:5000/movies')
+      },
+      {
+        path: "/details/:id",
+        element: <PrivateRoute>
+          <MovieDetails></MovieDetails>
+        </PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`)
       }
     ]
   },

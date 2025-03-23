@@ -48,9 +48,9 @@ const FeaturedMovies = () => {
                 </div>
                 <h2 className="card-title font-bold">{movie.movieTitle}</h2>
                 <div className="card-actions">
-                  <button className="btn w-full text-white bg-green-500 font-bold hover:bg-green-400">
+                  <Link to={`/details/${movie._id}`} className="btn w-full text-white bg-green-500 font-bold hover:bg-green-400">
                     See Details
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
