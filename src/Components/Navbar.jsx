@@ -18,10 +18,11 @@ const Navbar = () => {
   const links = (
     <>
       <div className="font-bold flex flex-col items-center md:flex-row gap-3 md:gap-5">
-        <NavLink to="/home">Home </NavLink>
-        <NavLink to="/allmovie">All Movie </NavLink>
+        <NavLink to="/">Home </NavLink>
+        <NavLink to="/allmovies">All Movies </NavLink>
         <NavLink to="/addmovie">Add Movie</NavLink>
-        <NavLink to="/myfavourite">My Favourites</NavLink>
+        <NavLink to="/favourites">My Favourites</NavLink>
+        <NavLink to="/plans">Plans</NavLink>
         {user ? (
           <div>
             <div className="dropdown dropdown-hover">
@@ -44,8 +45,8 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="flex gap-5">
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/register">Register</NavLink>
+            <NavLink to="/auth/login">Login</NavLink>
+            <NavLink to="/auth/register">Register</NavLink>
           </div>
         )}
       </div>
@@ -54,11 +55,11 @@ const Navbar = () => {
 
 
   return (
-    <div className="navbar py-0 bg-base-100 shadow-sm">
+    <div className="navbar p-0 bg-base-100 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <FiAlignJustify className="text-2xl" />
+          <div tabIndex={0} role="button" className="btn pl-2 p-0 btn-ghost lg:hidden">
+            <FiAlignJustify className="text-xl" />
           </div>
           <ul
             tabIndex={0}

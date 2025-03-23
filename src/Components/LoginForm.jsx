@@ -19,7 +19,7 @@ const LoginForm = () => {
         console.log(result);
         const lastSignInTime = result.user?.metadata?.lastSignInTime;
         const updatedItem = { email, lastSignInTime };
-        navigate(location?.state ? location.state : '/home')
+        navigate(location?.state ? location.state : "/");
 
         fetch("http://localhost:5000/user", {
           method: "patch",
@@ -46,7 +46,7 @@ const LoginForm = () => {
         const lastSignInTime = result.user?.metadata?.lastSignInTime;
         const user = { name, email, photoUrl, creationTime, lastSignInTime };
 
-        navigate(location?.state ? location.state : '/home')
+        navigate(location?.state ? location.state : "/");
 
         fetch(`http://localhost:5000/user`, {
           method: "post",
@@ -64,8 +64,9 @@ const LoginForm = () => {
                   "content-type": "application/json",
                 },
                 body: JSON.stringify({ email, lastSignInTime }),
-              }).then((res) => res.json())
-              .then(data => console.log(data))
+              })
+                .then((res) => res.json())
+                .then((data) => console.log(data));
             }
           })
           .catch((error) => {
@@ -87,9 +88,10 @@ const LoginForm = () => {
 
   return (
     <div>
-      <div className="hero bg-base-200 min-h-screen">
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <div className="hero bg-base-200 max-w-screen min-h-screen">
+        <div className="card bg-base-100 w-screen max-w-sm shrink-0 rounded-none md:rounded-lg shadow-2xl">
           <div className="card-body">
+          <h1 className="text-center text-2xl font-bold mb-5">Login Form</h1>
             <form className="fieldset" onSubmit={handleFormSubmit}>
               <label className="fieldset-label">Email</label>
               <input
@@ -113,7 +115,7 @@ const LoginForm = () => {
 
             <p>
               Don't Have an account?{" "}
-              <Link to="/register">
+              <Link to="/auth/register">
                 <span className="hover:border-b-2 hover:border-b-red-500 hover:cursor-pointer text-red-500 font-bold">
                   Register
                 </span>

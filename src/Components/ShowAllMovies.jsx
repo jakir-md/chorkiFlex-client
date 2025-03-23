@@ -1,6 +1,7 @@
 import React from "react";
-import Navbar from "./Navbar";
 import { useLoaderData } from "react-router-dom";
+import { Rating } from "react-simple-star-rating";
+import "./mycomponent.css";
 
 const ShowAllMovies = () => {
   const loadedMovie = useLoaderData();
@@ -8,18 +9,18 @@ const ShowAllMovies = () => {
   return (
     <div>
       <div>
-        <Navbar></Navbar>
-      </div>
-      <div className="bg-gray-800">
-        <div className="w-3/4 mx-auto mt-5 p-5">
-          <div className="grid grid-cols-3 gap-5">
+        <div className="lg:w-3/4 w-full mx-auto mt-5 p-5">
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-5">
             {loadedMovie.map((movie, indx) => (
-              <div className="card bg-base-100 shadow-sm rounded-none" key={indx}>
-                <figure className="h-56 rounded-none">
+              <div
+                className="card bg-base-100 shadow-xl rounded-none"
+                key={indx}
+              >
+                <figure className="h-56 p-4">
                   <img
                     src={movie.poster}
                     alt="Shoes"
-                    className="w-full h-full"
+                    className="w-full rounded-lg h-full"
                   />
                 </figure>
                 <div className="card-body px-2 py-2">
@@ -31,7 +32,7 @@ const ShowAllMovies = () => {
                     </div>
                     <div>
                       <p className="text-center font-bold text-gray-500">
-                        {movie.duration + " min"}
+                        {((movie.duration)/60).toFixed(0) + " hr " + (movie.duration)%60 + " min"}
                       </p>
                     </div>
                     <div>
@@ -40,9 +41,14 @@ const ShowAllMovies = () => {
                       </p>
                     </div>
                   </div>
+                  <div>
+                    <Rating initialValue={movie.rating} readonly size={25} />
+                  </div>
                   <h2 className="card-title font-bold">{movie.movieTitle}</h2>
                   <div className="card-actions">
-                    <button className="btn w-full bg-green-600 font-bold hover:bg-green-400">See Details</button>
+                    <button className="btn text-white w-full bg-green-600 font-bold hover:bg-green-400">
+                      See Details
+                    </button>
                   </div>
                 </div>
               </div>

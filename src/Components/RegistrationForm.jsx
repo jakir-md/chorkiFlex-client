@@ -20,9 +20,10 @@ const RegistrationForm = () => {
 
   return (
     <div>
-      <div className="hero bg-base-200 min-h-screen">
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <div className="hero mt-0 bg-base-200 min-h-screen">
+        <div className="card bg-base-100 w-full max-w-sm shrink-0 rounded-none md:rounded-lg shadow-2xl">
           <div className="card-body">
+            <h1 className="text-center text-2xl font-bold mb-5">Registration Form</h1>
             <form className="fieldset" onSubmit={handleFormSubmit}>
               <label className="fieldset-label">Name</label>
               <input
@@ -57,7 +58,7 @@ const RegistrationForm = () => {
 
             <p>
               Already Have an account?{" "}
-              <Link to="/login">
+              <Link to="/auth/login">
                 <span className="hover:border-b-2 hover:border-b-red-500 hover:cursor-pointer text-red-500 font-bold">
                   Login
                 </span>

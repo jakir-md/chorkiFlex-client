@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Rating } from "react-simple-star-rating";
+import "./mycomponent.css";
 
 const FeaturedMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -15,13 +17,11 @@ const FeaturedMovies = () => {
 
   return (
     <div className="bg-gray-800">
-      <h1 className="text-center text-5xl pt-20 text-white py-5">
-        Featured Movies
-      </h1>
-      <div className="w-3/4 mx-auto mt-5 p-5">
-        <div className="grid grid-cols-3 gap-5">
+      <h1 className="text-center md:text-5xl text-3xl font-bold pt-3 text-white">Featured Movies</h1>
+      <div className="lg:w-3/4 md:11/12 w-full mx-auto mt-3 p-5">
+        <div className="grid md:grid-cols-3 grid-cols-1 gap-5">
           {movies.map((movie, indx) => (
-            <div className="card bg-base-100 shadow-sm rounded-none" key={indx}>
+            <div className="card bg-base-100 shadow-2xl rounded-none" key={indx}>
               <figure className="h-56 rounded-none">
                 <img src={movie.poster} alt="Shoes" className="w-full h-full" />
               </figure>
@@ -41,12 +41,14 @@ const FeaturedMovies = () => {
                     <p className="font-bold text-gray-500 text-end text-sm ">
                       {movie.releaseYear}
                     </p>
-                    <p>{movie.rating}</p>
                   </div>
+                </div>
+                <div>
+                  <Rating initialValue={movie.rating} readonly size={25} />
                 </div>
                 <h2 className="card-title font-bold">{movie.movieTitle}</h2>
                 <div className="card-actions">
-                  <button className="btn w-full bg-green-600 font-bold hover:bg-green-400">
+                  <button className="btn w-full text-white bg-green-500 font-bold hover:bg-green-400">
                     See Details
                   </button>
                 </div>

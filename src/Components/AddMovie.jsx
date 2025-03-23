@@ -69,16 +69,17 @@ const AddMovie = () => {
   };
 
   return (
-    <div>
+    <div className="mb-10">
       <Toaster />
-      <div className="hero bg-base-200 mt-5 w-3/4 mx-auto">
-        <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
+      <div className="hero bg-base-200 mt-5 w-full md:w-3/4 mx-auto">
+        <div className="card bg-base-100 w-full shrink-0 rounded-none md:rounded-lg md:shadow-2xl">
           <div className="card-body">
+            <h1 className="text-center text-2xl font-bold mb-5">Add Movie</h1>
             <form className="fieldset" onSubmit={handleFormSubmission}>
               <div>
-                <div className="flex mx-auto mb-5 gap-10 w-11/12 justify-center items-center">
-                  <div className="w-1/2">
-                    <label className="fieldset-label text-xm mb-2">
+                <div className="flex mx-auto flex-col md:flex-row mb-3 md:mb-5 gap-3 md:gap-10 w-full md:w-11/12 justify-center items-center">
+                  <div className="w-full md:w-1/2">
+                    <label className="fieldset-label">
                       Movie Poster
                     </label>
                     <input
@@ -88,7 +89,7 @@ const AddMovie = () => {
                       placeholder="Poster"
                     />
                   </div>
-                  <div className="w-1/2">
+                  <div className="w-full md:w-1/2">
                     <label className="fieldset-label">Movie Title</label>
                     <input
                       type="text"
@@ -98,13 +99,13 @@ const AddMovie = () => {
                     />
                   </div>
                 </div>
-                <div className="flex mx-auto mb-5 gap-10 w-11/12 justify-center items-center">
-                  <div className="w-1/2">
+                <div className="flex mx-auto flex-col md:flex-row mb-3 md:mb-5 gap-3 md:gap-10 w-full md:w-11/12 justify-center items-center">
+                  <div className="w-full md:w-1/2">
                     <label className="fieldset-label">Genre</label>
                     <select
                       id="dropdown"
                       name="genre"
-                      className="w-full p-2 input rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full p-2 input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="">-- Choose an option --</option>
                       <option value="Sci-Fi">Sci-Fi</option>
@@ -114,7 +115,7 @@ const AddMovie = () => {
                       <option value="Thriller">Thriller</option>
                     </select>
                   </div>
-                  <div className="w-1/2">
+                  <div className="w-full md:w-1/2">
                     <label className="fieldset-label">Duration</label>
                     <input
                       type="text"
@@ -124,13 +125,13 @@ const AddMovie = () => {
                     />
                   </div>
                 </div>
-                <div className="flex mx-auto mb-5 gap-10 w-11/12 justify-center items-center">
-                  <div className="w-1/2">
+                <div className="flex mx-auto flex-col md:flex-row mb-3 md:mb-5 gap-3 md:gap-10 w-full md:w-11/12 justify-center items-center">
+                  <div className="w-full md:w-1/2">
                     <label className="fieldset-label">Release Year</label>
                     <select
                       id="dropdown"
                       name="releaseYear"
-                      className="w-full p-2 input rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full p-2 input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="">-- Choose an option --</option>
                       <option value="2025">2025</option>
@@ -140,7 +141,7 @@ const AddMovie = () => {
                       <option value="2021">2021</option>
                     </select>
                   </div>
-                  <div className="w-1/2">
+                  <div className="w-full md:w-1/2">
                   <label className="fieldset-label">Rating</label>
                     <input
                       type="text"
@@ -150,7 +151,7 @@ const AddMovie = () => {
                     />
                   </div>
                 </div>
-                <div className="flex mx-auto gap-10 w-11/12 justify-center items-center">
+                <div className="flex mx-auto flex-col md:flex-row md:mb-5 gap-3 md:gap-10 w-full md:w-11/12  justify-center items-center">
                   <div className="w-full">
                     <label className="fieldset-label">Summary</label>
                     <textarea
@@ -163,7 +164,7 @@ const AddMovie = () => {
                     ></textarea>
                   </div>
                 </div>
-                <div className="flex mx-auto gap-10 w-11/12 justify-center items-center">
+                <div className="flex mx-auto gap-10 w-full md:w-11/12 justify-center items-center">
                   <button className="btn btn-neutral mt-4 w-full">
                     Add Movie
                   </button>
