@@ -43,9 +43,8 @@ const FeaturedMovies = () => {
                     </p>
                   </div>
                 </div>
-                <div>
-                  <Rating initialValue={movie.rating} readonly size={25} />
-                </div>
+
+
                 <h2 className="card-title font-bold">{movie.movieTitle}</h2>
                 <div className="card-actions">
                   <Link to={`/details/${movie._id}`} className="btn w-full text-white bg-green-500 font-bold hover:bg-green-400">

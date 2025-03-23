@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import "./mycomponent.css";
 
@@ -46,9 +46,9 @@ const ShowAllMovies = () => {
                   </div>
                   <h2 className="card-title font-bold">{movie.movieTitle}</h2>
                   <div className="card-actions">
-                    <button className="btn text-white w-full bg-green-600 font-bold hover:bg-green-400">
-                      See Details
-                    </button>
+                  <Link to={`/details/${movie._id}`} className="btn w-full text-white bg-green-500 font-bold hover:bg-green-400">
+                    See Details
+                  </Link>
                   </div>
                 </div>
               </div>
