@@ -22,7 +22,7 @@ const Navbar = () => {
 
   const links = (
     <>
-      <div className="font-bold flex flex-col text-start items-center md:flex-row gap-3 md:gap-5">
+      <div className="font-bold flex flex-col justify-around text-start items-center md:flex-row gap-3 md:gap-10">
         <NavLink to="/">Home </NavLink>
         <NavLink to="/allmovies">All Movies </NavLink>
         <NavLink to="/addmovie">Add Movie</NavLink>
@@ -64,7 +64,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar p-0 bg-base-100 shadow-sm">
-      <div className="navbar-start">
+      <div className="navbar-start justify-between">
         <div className="dropdown">
           <div className="relative">
             <button
@@ -122,8 +122,15 @@ const Navbar = () => {
                     </div>
                   ) : (
                     <div className="flex md:flex-row flex-col">
-                      <NavLink to="/auth/login" className="font-bold px-2 py-1" >Login</NavLink>
-                      <NavLink to="/auth/register" className="font-bold px-2 py-1">Register</NavLink>
+                      <NavLink to="/auth/login" className="font-bold px-2 py-1">
+                        Login
+                      </NavLink>
+                      <NavLink
+                        to="/auth/register"
+                        className="font-bold px-2 py-1"
+                      >
+                        Register
+                      </NavLink>
                     </div>
                   )}
                 </ul>
@@ -134,10 +141,11 @@ const Navbar = () => {
         <Link to="/" className="btn btn-ghost text-xl">
           ChorkiFlex
         </Link>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal py-0 px-1 m-0">{links}</ul>
-      </div>
+
+      <ul className="menu navbar-center hidden md:flex menu-horizontal m-0">
+        {links}
+      </ul>
+    </div>
     </div>
   );
 };
