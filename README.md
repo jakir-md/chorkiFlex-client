@@ -5,6 +5,7 @@
 Features like user registration, login, and personalized profiles will enhance engagement, allowing visitors to track their interests and participate actively in discussions. By integrating expert consultation options, the platform will also guide users in making informed decisions about their next choice.</p>
 <h1>Key Features: </h1>
 <ol>
+    <li>CURD Operation</li>
     <li>Registration</li>
     <li>Login</li>
     <li>Private Route</li>
