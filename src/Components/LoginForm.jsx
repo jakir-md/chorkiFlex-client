@@ -20,7 +20,7 @@ const LoginForm = () => {
         const updatedItem = { email, lastSignInTime };
         navigate(location?.state ? location.state : "/");
 
-        fetch("http://localhost:5000/userupdate", {
+        fetch("https://chorki-flex-server.vercel.app/userupdate", {
           method: "post",
           headers: {
             "content-type": "application/json",
@@ -49,7 +49,7 @@ const LoginForm = () => {
 
         navigate(location?.state ? location.state : "/");
 
-        fetch(`http://localhost:5000/user`, {
+        fetch(`https://chorki-flex-server.vercel.app/user`, {
           method: "post",
           headers: {
             "content-type": "application/json",
@@ -59,7 +59,7 @@ const LoginForm = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data) {
-              fetch("http://localhost:5000/userupdate", {
+              fetch("https://chorki-flex-server.vercel.app/userupdate", {
                 method: "post",
                 headers: {
                   "content-type": "application/json",
@@ -72,7 +72,7 @@ const LoginForm = () => {
           })
           .catch((error) => {
             if (error) {
-              fetch(`http://localhost:5000/user`, {
+              fetch(`https://chorki-flex-server.vercel.app/user`, {
                 method: "put",
                 headers: {
                   "content-type": "application/json",

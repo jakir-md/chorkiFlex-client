@@ -7,17 +7,16 @@ const FeaturedMovies = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/featuredmovies")
+    fetch("https://chorki-flex-server.vercel.app/featuredmovies")
       .then((res) => res.json())
       .then((data) => {
-        
         setMovies(data);
       });
   }, []);
 
   return (
     <div className="bg-gray-800">
-      <h1 className="text-center md:text-5xl text-3xl font-bold pt-3 text-white">
+      <h1 className="text-center md:text-5xl text-3xl font-bold pt-10 text-white">
         Featured Movies
       </h1>
       <div className="lg:w-3/4 md:11/12 w-full mx-auto mt-3 p-5">
@@ -39,7 +38,10 @@ const FeaturedMovies = () => {
                   </div>
                   <div>
                     <p className="text-center font-bold text-gray-500">
-                      {movie.duration + " min"}
+                      {(movie.duration / 60).toFixed(0) +
+                        " hr " +
+                        (movie.duration % 60) +
+                        " min"}
                     </p>
                   </div>
                   <div>

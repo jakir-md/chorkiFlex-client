@@ -26,7 +26,6 @@ const Navbar = () => {
         <NavLink to="/allmovies">All Movies </NavLink>
         <NavLink to="/addmovie">Add Movie</NavLink>
         <NavLink to="/myfavourite">My Favourites</NavLink>
-        <NavLink to="/plans">Plans</NavLink>
         {user ? (
           <div>
             <div className="dropdown dropdown-hover">
@@ -90,9 +89,6 @@ const Navbar = () => {
                 </NavLink>
                 <NavLink to="/myfavourite" className="font-bold px-2 py-1">
                   My Favourites
-                </NavLink>
-                <NavLink to="/plans" className="font-bold px-2 py-1">
-                  Plans
                 </NavLink>
                 {user ? (
                   <div>

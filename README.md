@@ -1,12 +1,26 @@
-# React + Vite
+<h1>Name: NatureQuest</h1>
+<h1>Purpose: </h1>
+<p>Discover the ultimate movie experience with [Your Website Name]! Explore the latest blockbusters, timeless classics, and hidden gems across all genres. Get detailed reviews, ratings, trailers, and recommendations tailored just for you. Whether you're a fan of action, romance, thrillers, or sci-fi, we've got something for everyone. Stay updated with upcoming releases and trending films, and enjoy a seamless browsing experience with our intuitive interface. Your next favorite movie is just a click away <br>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features like user registration, login, and personalized profiles will enhance engagement, allowing visitors to track their interests and participate actively in discussions. By integrating expert consultation options, the platform will also guide users in making informed decisions about their next choice.</p>
+<h1>Key Features: </h1>
+<ol>
+    <li>Registration</li>
+    <li>Login</li>
+    <li>Private Route</li>
+    <li>Details Page</li>
+    <li>Google Authentication</li>
+    <li>Database Integration</li>
+    <li>Server Side Deployment</li>
+    <li>Astounding Footer</li>
+</ol>
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<h1>NPM Packages Used: </h1>
+<ol>
+    <li>react-hook-form</li>
+    <li>react-hot-toast</li>
+    <li>React-icons</li>
+    <li>firebase</li>
+    <li>react-simple-star-rating</li>
+</ol>
+<h1>Web Link: https://movie-orchid.firebaseapp.com</h1>

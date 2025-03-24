@@ -73,7 +73,7 @@ const UpdateMovie = () => {
       updateMail
     };
 
-    fetch("http://localhost:5000/movie", {
+    fetch("https://chorki-flex-server.vercel.app/movie", {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

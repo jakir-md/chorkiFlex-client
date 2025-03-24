@@ -11,7 +11,7 @@ const FavrouriteMovies = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("http://localhost:5000/favouriteall", {
+    fetch("https://chorki-flex-server.vercel.app/favouriteall", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -26,7 +26,7 @@ const FavrouriteMovies = () => {
 
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/favourite/${id}`, {
+    fetch(`https://chorki-flex-server.vercel.app/favourite/${id}`, {
         method: "DELETE"
     })
     .then(res => res.json())
@@ -65,7 +65,7 @@ const FavrouriteMovies = () => {
                   </div>
                   <div>
                     <p className="text-center font-bold text-gray-500">
-                      {(movie.duration / 60).toFixed(0) +
+                      {parseInt((movie.duration / 60)) +
                         " hr " +
                         (movie.duration % 60) +
                         " min"}

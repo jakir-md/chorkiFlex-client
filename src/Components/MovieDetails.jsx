@@ -18,7 +18,7 @@ const MovieDetails = () => {
     const favEmail = user.email;
 
     const handleDelete = (delId) => {
-        fetch(`http://localhost:5000/movie/${delId}`, {
+        fetch(`https://chorki-flex-server.vercel.app/movie/${delId}`, {
             method: "DELETE",
         }).then(res => res.json())
         .then(data => {
@@ -31,7 +31,7 @@ const MovieDetails = () => {
 
     const handleFavourite = () => {
         const obj = {poster, movieTitle, genre, duration, releaseYear, rating, summary, email, favEmail};
-        fetch('http://localhost:5000/favourite', {
+        fetch('https://chorki-flex-server.vercel.app/favourite', {
             method: "POST",
             headers: {
                 'content-type':'application/json'

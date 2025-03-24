@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import "./mycomponent.css";
+import LoaderPage from "./LoaderPage";
 
 const ShowAllMovies = () => {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/movies")
+    fetch("https://chorki-flex-server.vercel.app/movies")
       .then((res) => res.json())
       .then((data) => setMovies(data));
   }, [search]);
@@ -18,7 +19,6 @@ const ShowAllMovies = () => {
   };
 
   const handleOnclick = () => {
-    
     const remaining = movies.filter(item => (item.movieTitle).toUpperCase() === search.toUpperCase())
     setMovies(remaining);
   };
@@ -26,6 +26,7 @@ const ShowAllMovies = () => {
   return (
     <div>
       <div>
+        {movies.length == 0 && <LoaderPage></LoaderPage>}
         <div className="lg:w-3/4 w-full mx-auto mt-5 p-5">
           <div className="flex gap-5 mb-5 mx-auto">
             <input
@@ -59,9 +60,9 @@ const ShowAllMovies = () => {
                     </div>
                     <div>
                       <p className="text-center font-bold text-gray-500">
-                        {(movie.duration / 60).toFixed(0) +
+                        {(parseInt((movie.duration) / 60)) +
                           " hr " +
-                          (movie.duration % 60) +
+                          (parseInt((movie.duration) % 60)) +
                           " min"}
                       </p>
                     </div>

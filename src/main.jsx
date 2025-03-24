@@ -48,7 +48,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <MovieDetails></MovieDetails>
         </PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`)
+        loader: ({params}) => fetch(`https://chorki-flex-server.vercel.app/details/${params.id}`)
       },
       {
         path: "/myfavourite",
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <UpdateMovie></UpdateMovie>
         </PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`)
+        loader: ({params}) => fetch(`https://chorki-flex-server.vercel.app/details/${params.id}`)
       }
     ]
   }

@@ -13,7 +13,7 @@ const AutoCarousel = () => {
     }, []);
 
   return (
-    <div className="carousel w-full mx-auto">
+    <div className="carousel mx-auto">
       <div
         className={`carousel-item relative w-full ${
           currentSlide === 2 ? "block" : "hidden"
@@ -21,7 +21,7 @@ const AutoCarousel = () => {
       >
         <img
           src="https://i.ibb.co.com/zHxmbvGr/dark-fantasy-scene.jpg"
-          className="w-[1200px] md:h-[400px] h-[300px]"
+          className="w-[1300px] md:h-[400px] h-[300px]"
           alt="Slide 1"
         />
         <div className="absolute top-10 md:left-10 left-2 text-white space-y-4">
@@ -72,7 +72,7 @@ const AutoCarousel = () => {
       >
         <img
           src="https://i.ibb.co.com/TxzhdqqC/back-view-soldier-fighting-war-1.jpg"
-          className="w-[1200px] md:h-[400px] h-[300px]"
+          className="w-[1300px] md:h-[400px] h-[300px]"
           alt="Slide 2"
         />
         <div className="absolute top-10 md:left-10 left-2 text-white space-y-4">
@@ -120,7 +120,7 @@ const AutoCarousel = () => {
       >
         <img
           src="https://i.ibb.co.com/XZv4YSj5/people-cinema-watching-movie.jpg"
-          className="w-[1200px] md:h-[400px] h-[300px]"
+          className="w-[1300px] md:h-[400px] h-[300px]"
           alt="Slide 3"
         />
         <div className="absolute top-10 md:left-10 left-2 text-white space-y-4">

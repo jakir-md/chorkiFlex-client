@@ -1,20 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../Provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { Rating } from "react-simple-star-rating";
 
 const AddMovie = () => {
   const { user } = useContext(AuthContext);
+  let [rating, setRating] = useState(0);
+
+  const navigate = useNavigate();
+
   const handleFormSubmission = (e) => {
     e.preventDefault();
     const form = e.target;
     const poster = form.poster.value;
     const movieTitle = form.movieTitle.value;
     const genre = form.genre.value;
-    const duration = parseFloat(form.duration.value);
+    let duration = form.duration.value;
+    if (duration !== "") duration = parseInt(duration);
+
     const releaseYear = form.releaseYear.value;
     const summary = form.summary.value;
     const email = user.email;
-    const rating = form.rating.value;
 
     const urlPattern = /^(https?:\/\/)?([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(\/\S*)?$/;
     if (!urlPattern.test(poster)) {
@@ -27,7 +34,7 @@ const AddMovie = () => {
       return;
     }
 
-    if (parseFloat(duration) < 60.0) {
+    if (duration < 60 || duration === "") {
       toast.error("Irrelavent Duration !!!");
       return;
     }
@@ -37,11 +44,13 @@ const AddMovie = () => {
       return;
     }
 
-    if (rating == "") {
+    if (rating == 0) {
       toast.error("Invalid Rating !!!");
       return;
     }
 
+    rating = rating.toString();
+    console.log
     const movie = {
       poster,
       movieTitle,
@@ -53,7 +62,9 @@ const AddMovie = () => {
       email,
     };
 
-    fetch("http://localhost:5000/movies", {
+    console.log(duration);
+
+    fetch("https://chorki-flex-server.vercel.app/movies", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -64,8 +75,13 @@ const AddMovie = () => {
       .then((data) => {
         if (data.insertedId) {
           toast.success("Movie Added Successfully.");
+          navigate('/');
         }
       });
+  };
+
+  const handleRating = (rate) => {
+    setRating(rate); // You can send this to a backend/API
   };
 
   return (
@@ -143,12 +159,7 @@ const AddMovie = () => {
                   </div>
                   <div className="w-full md:w-1/2">
                   <label className="fieldset-label">Rating</label>
-                    <input
-                      type="text"
-                      className="input w-full"
-                      name="rating"
-                      placeholder="Rating"
-                    />
+                    <Rating onClick={handleRating} ratingValue={rating} />
                   </div>
                 </div>
                 <div className="flex mx-auto flex-col md:flex-row md:mb-5 gap-3 md:gap-10 w-full md:w-11/12  justify-center items-center">

@@ -24,7 +24,7 @@ export function RegistrationReact() {
             const creationTime = result.user?.metadata?.creationTime;
             const lastSignInTime = result.user?.metadata?.lastSignInTime;
             const user = {name, email, photourl, creationTime, lastSignInTime};
-            fetch(`http://localhost:5000/user`, {
+            fetch(`https://chorki-flex-server.vercel.app/user`, {
               method: "put",
               headers: {
                 "content-type": "application/json",
