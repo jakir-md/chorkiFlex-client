@@ -21,8 +21,8 @@ const LoginForm = () => {
         const updatedItem = { email, lastSignInTime };
         navigate(location?.state ? location.state : "/");
 
-        fetch("http://localhost:5000/user", {
-          method: "patch",
+        fetch("http://localhost:5000/userupdate", {
+          method: "post",
           headers: {
             "content-type": "application/json",
           },
@@ -39,12 +39,12 @@ const LoginForm = () => {
   const handleLoginWithGoogle = () => {
     createUserWithGoogle()
       .then((result) => {
-        const name = result.user.displayName;
         const email = result.user.email;
-        const photoUrl = result.user.photoURL;
+        const name = result.user.displayName;
+        const photoURL = result.user.photoURL;
         const creationTime = result.user?.metadata?.creationTime;
         const lastSignInTime = result.user?.metadata?.lastSignInTime;
-        const user = { name, email, photoUrl, creationTime, lastSignInTime };
+        const user = {name, photoURL, email, creationTime, lastSignInTime };
 
         navigate(location?.state ? location.state : "/");
 
@@ -58,8 +58,8 @@ const LoginForm = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data) {
-              fetch("http://localhost:5000/user", {
-                method: "patch",
+              fetch("http://localhost:5000/userupdate", {
+                method: "post",
                 headers: {
                   "content-type": "application/json",
                 },

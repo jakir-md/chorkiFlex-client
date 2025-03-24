@@ -35,7 +35,7 @@ const ShowAllMovies = () => {
               placeholder="Email"
               onKeyUp={handleSearch}
             />
-            <input type="submit" className="px-3 py-2 bg-green-500 font-bold text-white rounded-lg " value="Submit" onClick={handleOnclick} />
+            <input type="submit" className="px-3 hover:cursor-pointer py-2 bg-green-500 hover:bg-green-600 font-bold text-white rounded-lg " value="Submit" onClick={handleOnclick} />
           </div>
           <div className="grid md:grid-cols-3 grid-cols-1 gap-5">
             {movies.map((movie, indx) => (

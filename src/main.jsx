@@ -15,6 +15,7 @@ import MovieDetails from "./Components/MovieDetails.jsx";
 import FavrouriteMovies from "./Components/FavrouriteMovies.jsx";
 import ErrorPage from "./Components/ErrorPage.jsx";
 import UpdateMovie from "./Components/UpdateMovie.jsx";
+import { RegistrationReact } from "./Components/RegistrationReact.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/auth/register",
-        element:<RegistrationForm/>
+        element: <RegistrationReact></RegistrationReact>
       }, 
       {
         path: "/allmovies",
