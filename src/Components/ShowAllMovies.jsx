@@ -18,7 +18,7 @@ const ShowAllMovies = () => {
   };
 
   const handleOnclick = () => {
-    console.log(search);
+    
     const remaining = movies.filter(item => (item.movieTitle).toUpperCase() === search.toUpperCase())
     setMovies(remaining);
   };
@@ -35,7 +35,7 @@ const ShowAllMovies = () => {
               placeholder="Email"
               onKeyUp={handleSearch}
             />
-            <input type="submit" className="px-3 hover:cursor-pointer py-2 bg-green-500 hover:bg-green-600 font-bold text-white rounded-lg " value="Submit" onClick={handleOnclick} />
+            <input type="submit" className="px-3 hover:cursor-pointer py-2 bg-[#ec5990] hover:bg-[#bf1650] font-bold text-white rounded-lg " value="Submit" onClick={handleOnclick} />
           </div>
           <div className="grid md:grid-cols-3 grid-cols-1 gap-5">
             {movies.map((movie, indx) => (
@@ -78,7 +78,7 @@ const ShowAllMovies = () => {
                   <div className="card-actions">
                     <Link
                       to={`/details/${movie._id}`}
-                      className="btn w-full text-white bg-green-500 font-bold hover:bg-green-400"
+                      className="btn w-full text-white bg-[#ec5990] font-bold hover:bg-[#bf1650]"
                     >
                       See Details
                     </Link>

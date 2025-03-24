@@ -10,11 +10,11 @@ const RegistrationForm = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     createUserWithEmailAndPass(email, password)
-      .then((result) => {
-        console.log(result);
+      .then(() => {
+        
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        
       });
   };
 

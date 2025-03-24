@@ -10,18 +10,23 @@ const FeaturedMovies = () => {
     fetch("http://localhost:5000/featuredmovies")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setMovies(data);
       });
   }, []);
 
   return (
     <div className="bg-gray-800">
-      <h1 className="text-center md:text-5xl text-3xl font-bold pt-3 text-white">Featured Movies</h1>
+      <h1 className="text-center md:text-5xl text-3xl font-bold pt-3 text-white">
+        Featured Movies
+      </h1>
       <div className="lg:w-3/4 md:11/12 w-full mx-auto mt-3 p-5">
         <div className="grid md:grid-cols-3 grid-cols-1 gap-5">
           {movies.map((movie, indx) => (
-            <div className="card bg-base-100 shadow-2xl rounded-none" key={indx}>
+            <div
+              className="card bg-base-100 shadow-2xl rounded-none"
+              key={indx}
+            >
               <figure className="h-56 rounded-none">
                 <img src={movie.poster} alt="Shoes" className="w-full h-full" />
               </figure>
@@ -44,10 +49,15 @@ const FeaturedMovies = () => {
                   </div>
                 </div>
 
-
+                <div>
+                  <Rating initialValue={movie.rating} readonly size={25} />
+                </div>
                 <h2 className="card-title font-bold">{movie.movieTitle}</h2>
                 <div className="card-actions">
-                  <Link to={`/details/${movie._id}`} className="btn w-full text-white bg-green-500 font-bold hover:bg-green-400">
+                  <Link
+                    to={`/details/${movie._id}`}
+                    className="btn w-full text-white bg-[#ec5990] font-bold hover:bg-[#bf1650]"
+                  >
                     See Details
                   </Link>
                 </div>

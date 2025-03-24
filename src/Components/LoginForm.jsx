@@ -16,7 +16,6 @@ const LoginForm = () => {
     const password = e.target.password.value;
     signInUserWithEmailAndPass(email, password)
       .then((result) => {
-        console.log(result);
         const lastSignInTime = result.user?.metadata?.lastSignInTime;
         const updatedItem = { email, lastSignInTime };
         navigate(location?.state ? location.state : "/");
@@ -29,10 +28,12 @@ const LoginForm = () => {
           body: JSON.stringify(updatedItem),
         })
           .then((res) => res.json())
-          .then((data) => console.log(data));
+          .then(() => {
+            
+          });
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        
       });
   };
 
@@ -66,7 +67,7 @@ const LoginForm = () => {
                 body: JSON.stringify({ email, lastSignInTime }),
               })
                 .then((res) => res.json())
-                .then((data) => console.log(data));
+                .then(() => {});
             }
           })
           .catch((error) => {
@@ -81,8 +82,8 @@ const LoginForm = () => {
             }
           });
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        
       });
   };
 

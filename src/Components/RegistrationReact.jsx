@@ -1,20 +1,19 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import "./form.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 export function RegistrationReact() {
   const { register, handleSubmit } = useForm();
-  const [data, setData] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const { createUserWithEmailAndPass } = useContext(AuthContext);
-
+  const { createUserWithEmailAndPass , updateUserInfo} = useContext(AuthContext);
   return (
-    <div className="formclass w-2/4 mx-auto shadow-2xl px-10 py-10">
+    <div className="formclass md:w-1/2 w-full mx-auto shadow-2xl px-10 py-10">
       <h1 className="text-center text-2xl font-bold mb-5">Registration</h1>
       <form
         onSubmit={handleSubmit((data) => {
-          setData(data);
           const email = data.email;
           const password = data.password;
           const name = data.name;
@@ -22,7 +21,6 @@ export function RegistrationReact() {
 
           createUserWithEmailAndPass(email, password)
           .then((result) => {
-            console.log(result);
             const creationTime = result.user?.metadata?.creationTime;
             const lastSignInTime = result.user?.metadata?.lastSignInTime;
             const user = {name, email, photourl, creationTime, lastSignInTime};
@@ -32,10 +30,22 @@ export function RegistrationReact() {
                 "content-type": "application/json",
               },
               body: JSON.stringify(user),
-            });
+            }).then(res => res.json())
+            .then(() => {
+              
+            })
+            
+            updateUserInfo({displayName: name, photoURL: photourl})
+            .then(() => {
+              
+            }).catch(()=>{
+
+            })
+
+            navigate(location?.state ? location.state : '/');
           })
-          .catch((error) => {
-            console.log(error);
+          .catch(() => {
+            
           });
         })}
       >

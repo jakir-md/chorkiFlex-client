@@ -1,5 +1,10 @@
 import React from "react";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -7,44 +12,80 @@ const Footer = () => {
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div>
-            <h2 className="text-xl font-bold text-white">NatureQuest</h2>
+            <h2 className="text-xl font-bold text-white">ChorkiFlex</h2>
             <p className="mt-3 text-sm">
-              Discover eco-friendly adventures that connect you with nature while promoting sustainability.
+              Discover the ultimate movie experience with ChorkiFlex!
+              Explore the latest blockbusters, timeless classics, and hidden
+              gems across all genres.
             </p>
           </div>
 
           <div>
             <h3 className="text-lg font-semibold text-white">Quick Links</h3>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><a href="#" className="hover:text-green-400">About Us</a></li>
-              <li><a href="#" className="hover:text-green-400">Adventures</a></li>
-              <li><a href="#" className="hover:text-green-400">Blog</a></li>
-              <li><a href="#" className="hover:text-green-400">Contact</a></li>
+              <li>
+                <a href="#" className="hover:text-green-400">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-green-400">
+                 Upcomming Movies
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-green-400">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-green-400">
+                  Contact
+                </a>
+              </li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-lg font-semibold text-white">Explore</h3>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><a href="#" className="hover:text-green-400">Mountain Treks</a></li>
-              <li><a href="#" className="hover:text-green-400">Ocean Dives</a></li>
-              <li><a href="#" className="hover:text-green-400">Wildlife Safaris</a></li>
-              <li><a href="#" className="hover:text-green-400">Camping Retreats</a></li>
+              <li>
+                <a href="#" className="hover:text-green-400">
+                  Online Streaming
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-green-400">
+                  Multiple Devices
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-green-400">
+                  AR and VR Experience
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-green-400">
+                  Buy Offline Tickets
+                </a>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold text-white">Join Our Newsletter</h3>
+            <h3 className="text-lg font-semibold text-white">
+              Join Our Newsletter
+            </h3>
             <p className="mt-3 text-sm">
-              Stay updated with our latest eco-adventure offers and travel tips.
+              Stay updated with our latest Movie Releases.
             </p>
             <div className="mt-3 flex">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full p-2 rounded-l-md text-gray-900 focus:outline-none"
+                className="w-full p-2 bg-white rounded-l-md text-gray-900 focus:outline-none"
               />
-              <button className="bg-green-500 px-4 py-2 text-white rounded-r-md hover:bg-green-600 transition">
+              <button className="bg-[#ec5990] px-4 py-2 text-white rounded-r-md hover:cursor-pointer hover:bg-[#bf1650] transition">
                 Subscribe
               </button>
             </div>
@@ -54,13 +95,23 @@ const Footer = () => {
         <div className="border-t border-gray-700 my-6"></div>
 
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm">&copy; {new Date().getFullYear()} NatureQuest. All rights reserved.</p>
+          <p className="text-sm">
+            &copy; {new Date().getFullYear()} ChorkiFlex. All rights reserved.
+          </p>
 
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-white transition"><FaFacebookF /></a>
-            <a href="#" className="text-gray-400 hover:text-white transition"><FaTwitter /></a>
-            <a href="#" className="text-gray-400 hover:text-white transition"><FaInstagram /></a>
-            <a href="#" className="text-gray-400 hover:text-white transition"><FaLinkedinIn /></a>
+            <a href="#" className="text-gray-400 hover:text-white transition">
+              <FaFacebookF />
+            </a>
+            <a href="#" className="text-gray-400 hover:text-white transition">
+              <FaTwitter />
+            </a>
+            <a href="#" className="text-gray-400 hover:text-white transition">
+              <FaInstagram />
+            </a>
+            <a href="#" className="text-gray-400 hover:text-white transition">
+              <FaLinkedinIn />
+            </a>
           </div>
         </div>
       </div>

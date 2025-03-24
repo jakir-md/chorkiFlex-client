@@ -12,14 +12,13 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOut()
-      .then((result) => {
-        console.log(result);
+      .then(() => {
+        
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        
       });
   };
-
   const links = (
     <>
       <div className="font-bold flex flex-col justify-around text-start items-center md:flex-row gap-3 md:gap-5">
