@@ -6,7 +6,7 @@ const AutoCarousel = () => {
 
     useEffect(() => {
       const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % totalSlides);
+        setCurrentSlide((prev) => (prev+1) % totalSlides);
       }, 2000);
 
       return () => clearInterval(interval);
@@ -16,7 +16,7 @@ const AutoCarousel = () => {
     <div className="carousel w-full mx-auto">
       <div
         className={`carousel-item relative w-full ${
-          currentSlide === 0 ? "block" : "hidden"
+          currentSlide === 2 ? "block" : "hidden"
         }`}
       >
         <img
@@ -115,7 +115,7 @@ const AutoCarousel = () => {
 
       <div
         className={`carousel-item relative w-full ${
-          currentSlide === 2 ? "block" : "hidden"
+          currentSlide === 0 ? "block" : "hidden"
         }`}
       >
         <img

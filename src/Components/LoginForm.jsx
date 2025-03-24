@@ -92,7 +92,7 @@ const LoginForm = () => {
       <div className="hero bg-base-200 max-w-screen min-h-screen">
         <div className="card bg-base-100 w-screen max-w-sm shrink-0 rounded-none md:rounded-lg shadow-2xl">
           <div className="card-body">
-          <h1 className="text-center text-2xl font-bold mb-5">Login Form</h1>
+          <h1 className="text-center text-2xl font-bold mb-5">Login</h1>
             <form className="fieldset" onSubmit={handleFormSubmit}>
               <label className="fieldset-label">Email</label>
               <input
